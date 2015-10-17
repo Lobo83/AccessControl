@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Se importa la configuración de la conexión a bd -->
+	<import resource="DataSourceContext.xml" />
+	<import resource="TransactionManagerContext.xml" />
+	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+	<tx:annotation-driven transaction-manager="txManager" />
+	<!-- Se habilita la autodetección de beans anotadas con @Aspect -->
+	<aop:aspectj-autoproxy />
+	<bean id="accessControlAspect"
+		class="org.accessControl.persistence.aspect.AccessControlAspect" >
+		<property name ="accessLogic" ref="logicaAcceso"/>
+		</bean>
+
+	<bean id="logicaAcceso" class="org.accessControl.persistence.logic.AccessControlLogic">
+<!-- 		<property name="useCache" value="true" /> -->
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="claseDummy" class="org.accessControl.test.accessTest.DummyCanAccess"/>
+
+</beans>

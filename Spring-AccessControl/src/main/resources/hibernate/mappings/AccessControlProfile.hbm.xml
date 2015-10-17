@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-ago-2013 12:06:29 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.accessControl.persistence.bean.AccessControlProfile" table="access_control_profile" catalog="personalTrainer">
+        <id name="codProfile" type="string">
+            <column name="COD_PROFILE" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="createDate" type="date">
+            <column name="CREATE_DATE" length="10" not-null="true" />
+        </property>
+        <property name="updateDate" type="date">
+            <column name="UPDATE_DATE" length="10" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="25" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="100" not-null="true" />
+        </property>
+        <property name="profileName" type="string">
+            <column name="PROFILE_NAME" length="25" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100" />
+        </property>
+        <property name="optimistLock" type="short">
+            <column name="OPTIMIST_LOCK" precision="3" scale="0" not-null="true" />
+        </property>
+        <set name="accessControlRights" inverse="true">
+            <key>
+                <column name="COD_PROFILE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="org.accessControl.persistence.bean.AccessControlRight" />
+        </set>
+    </class>
+</hibernate-mapping>
