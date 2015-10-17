@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Lobo
  * 
  */
-// @Transactional Al poner esta anotación, se produce bien la DI pero luego,
-// cuando se quiere recuperar la bean en algún sitio del código, las tiene a
-// null.
+
 public class AccessControlLogic {
 
 	private static final String USER_PROFILE="ACPROFILE2";
