@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2013 10:50:30 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.Exercise" table="exercise" catalog="personalTrainer">
+        <id name="idExercise" type="int">
+            <column name="ID_EXERCISE" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="exerciseType" class="org.personaltrainer.persistence.bean.ExerciseType" fetch="select">
+            <column name="COD_EXERCISE_TYPE" length="10" not-null="true" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="45" not-null="true" />
+        </property>
+        <property name="optimistLock" type="int">
+            <column name="OPTIMIST_LOCK" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="50" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100" not-null="false" />
+        </property>
+        <property name="urlDemo" type="string">
+            <column name="URL_DEMO" length="500" not-null="false" />
+        </property>
+        <set name="exerciseMuscles" inverse="true">
+            <key>
+                <column name="ID_EXERCISE" not-null="true" />
+            </key>
+            <one-to-many class="org.personaltrainer.persistence.bean.ExerciseMuscle" />
+        </set>
+    </class>
+</hibernate-mapping>

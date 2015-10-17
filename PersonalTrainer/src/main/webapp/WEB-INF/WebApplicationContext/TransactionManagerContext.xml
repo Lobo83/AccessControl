@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<import resource="DataSourceContext.xml" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>/hibernate/mappings/AccessControlAction.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlProfile.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlResource.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlResourceType.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlRight.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlTypeBehavior.hbm.xml</value>
+				<value>/hibernate/mappings/AccessControlUser.hbm.xml</value>
+				<value>/hibernate/mappings/UserData.hbm.xml</value>
+				<value>/hibernate/mappings/BioMeasure.hbm.xml</value>
+				<value>/hibernate/mappings/ExerciseMeasure.hbm.xml</value>
+				<value>/hibernate/mappings/ExerciseMuscle.hbm.xml</value>
+				<value>/hibernate/mappings/ExerciseRutine.hbm.xml</value>
+				<value>/hibernate/mappings/ExerciseType.hbm.xml</value>
+				<value>/hibernate/mappings/Exercise.hbm.xml</value>
+				<value>/hibernate/mappings/Muscle.hbm.xml</value>
+				<value>/hibernate/mappings/Rutine.hbm.xml</value>
+				<value>/hibernate/mappings/UserDataHistoric.hbm.xml</value>
+				<value>/hibernate/mappings/ExerciseRutineHistoric.hbm.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<!-- falta por añadir la gestión de caché y un gestor de conexiones C3P0 -->
+				<prop key="dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+<!-- 				<prop key="dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop> -->
+				<prop key="show_sql">true</prop>
+				<prop key="connection.pool_size">50</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+
+				<prop key="hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<!-- <prop key="hibernate.connection.provider_class">org.hibernate.connection.ConnectionProviderFactory -->
+				<!-- <prop key="hibernate.connection.provider_class">hibernate.connection.provider_class=org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</prop> -->
+				<!-- <prop key="hibernate.c3p0.minPoolSize">5</prop> -->
+				<!-- Especificamos el valor maximo del pool de conexiones -->
+				<!-- <prop key="hibernate.c3p0.maxPoolSize">20</prop> -->
+				<!-- El tiempo de vida de cada conexion del pool. -->
+				<!-- <prop key="hibernate.c3p0.timeout">600</prop> -->
+				<!-- Especificamos el valor maximo de transferencias -->
+				<!-- <prop key="hibernate.c3p0.max_statement">50</prop> -->
+				<!-- Espeficica que no chequee el estado de la conexion antes de cada 
+					consulta -->
+				<!-- <prop key="hibernate.c3p0.testConnectionOnCheckout">false</prop> -->
+			</props>
+
+
+
+		</property>
+
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+
+	</bean>
+
+
+
+</beans>

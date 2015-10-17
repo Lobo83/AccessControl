@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-ago-2013 9:56:14 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.BioMeasure" table="bio_measure" catalog="personalTrainer">
+        <id name="codMeasure" type="string">
+            <column name="COD_MEASURE" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="50" not-null="true" />
+        </property>
+        <property name="optimistLock" type="int">
+            <column name="OPTIMIST_LOCK" not-null="true" />
+        </property>
+        <property name="formula" type="string">
+            <column name="FORMULA" length="500" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="45" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

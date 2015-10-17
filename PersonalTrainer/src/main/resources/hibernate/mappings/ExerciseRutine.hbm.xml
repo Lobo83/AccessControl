@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-ago-2013 7:53:13 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.ExerciseRutine" table="exercise_rutine" catalog="personalTrainer">
+        <id name="idExerciseRutine" type="int">
+            <column name="ID_EXERCISE_RUTINE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="rutine" class="org.personaltrainer.persistence.bean.Rutine" fetch="select">
+            <column name="ID_RUTINE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exerciseMeasure" class="org.personaltrainer.persistence.bean.ExerciseMeasure" fetch="select">
+            <column name="COD_EXERCISE_MEASURE_TYPE" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exercise" class="org.personaltrainer.persistence.bean.Exercise" fetch="select">
+            <column name="ID_EXERCISE" not-null="true" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="45" not-null="true" />
+        </property>
+        <property name="optimistLock" type="int">
+            <column name="OPTIMIST_LOCK" not-null="true" />
+        </property>
+        <property name="seriesNumber" type="int">
+            <column name="SERIES_NUMBER" not-null="true" />
+        </property>
+        <property name="duration" type="int">
+            <column name="DURATION" not-null="true" />
+        </property>
+        <property name="exerciseOrder" type="int">
+            <column name="EXERCISE_ORDER" not-null="true" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="WEIGHT" precision="10" />
+        </property>
+        <set name="exerciseRutineHistorics" cascade="delete" inverse="true">
+            <key>
+                <column name="ID_EXERCISE_RUTINE" not-null="true" />
+            </key>
+            <one-to-many class="org.personaltrainer.persistence.bean.ExerciseRutineHistoric" />
+        </set>
+    </class>
+</hibernate-mapping>

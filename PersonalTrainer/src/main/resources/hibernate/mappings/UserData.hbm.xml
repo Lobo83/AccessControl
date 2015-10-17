@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-ago-2013 9:37:33 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.UserData" table="user_data" catalog="personalTrainer">
+        <id name="idUserData" type="int">
+            <column name="ID_USER_DATA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="accessControlUser" class="org.accessControl.persistence.bean.AccessControlUser" fetch="select">
+            <column name="USER_LOGIN" length="10" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="100" not-null="true" />
+        </property>
+        <property name="optimistLock" type="short">
+            <column name="OPTIMIST_LOCK" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="sex" type="string">
+            <column name="SEX" length="10" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="WEIGHT" precision="7" />
+        </property>
+        <property name="height" type="big_decimal">
+            <column name="HEIGHT" precision="7" />
+        </property>
+        <property name="belly" type="big_decimal">
+            <column name="BELLY" precision="7" />
+        </property>
+        <property name="hip" type="big_decimal">
+            <column name="HIP" precision="7" />
+        </property>
+        <property name="chest" type="big_decimal">
+            <column name="CHEST" precision="7" />
+        </property>
+        <property name="mail" type="string">
+            <column name="MAIL" length="100" />
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="100" not-null="true" />
+        </property>
+        <property name="imc" type="big_decimal">
+            <column name="IMC" precision="7" />
+        </property>
+        <property name="igc" type="big_decimal">
+            <column name="IGC" precision="7" />
+        </property>
+        <property name="mcm" type="big_decimal">
+            <column name="MCM" precision="7" />
+        </property>
+        <property name="mb" type="big_decimal">
+            <column name="MB" precision="7" />
+        </property>
+        <property name="baseHeartRate" type="big_decimal">
+            <column name="BASE_HEART_RATE" precision="7" />
+        </property>
+        <property name="bellyHeightRate" type="big_decimal">
+            <column name="BELLY_HEIGHT_RATE" precision="7" />
+        </property>
+        <property name="age" type="string">
+            <column name="AGE" length="3" />
+        </property>
+        <property name="maxHeartRate" type="big_decimal">
+            <column name="MAX_HEART_RATE" precision="7" />
+        </property>
+        <property name="heartRatea" type="string">
+            <column name="HEART_RATEA" length="45" />
+        </property>
+        <property name="heartRateb" type="string">
+            <column name="HEART_RATEB" length="45" />
+        </property>
+        <property name="heartRatec" type="string">
+            <column name="HEART_RATEC" length="45" />
+        </property>
+        <property name="heartRated" type="string">
+            <column name="HEART_RATED" length="45" />
+        </property>
+        <property name="heartRatee" type="string">
+            <column name="HEART_RATEE" length="45" />
+        </property>
+        <set name="rutines" inverse="true">
+            <key>
+                <column name="ID_USER_DATA" not-null="true" />
+            </key>
+            <one-to-many class="org.personaltrainer.persistence.bean.Rutine" />
+        </set>
+    </class>
+</hibernate-mapping>

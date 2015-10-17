@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 31-ago-2013 9:58:51 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.UserDataHistoric" table="user_data_historic" catalog="personalTrainer">
+        <id name="idUserDataHistoric" type="int">
+            <column name="ID_USER_DATA_HISTORIC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userData" class="org.personaltrainer.persistence.bean.UserData" fetch="select">
+            <column name="ID_USER_DATA" not-null="true" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="100" not-null="true" />
+        </property>
+        <property name="optimistLock" type="short">
+            <column name="OPTIMIST_LOCK" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="WEIGHT" precision="7" />
+        </property>
+        <property name="height" type="big_decimal">
+            <column name="HEIGHT" precision="7" />
+        </property>
+        <property name="belly" type="big_decimal">
+            <column name="BELLY" precision="7" />
+        </property>
+        <property name="hip" type="big_decimal">
+            <column name="HIP" precision="7" />
+        </property>
+        <property name="chest" type="big_decimal">
+            <column name="CHEST" precision="7" />
+        </property>
+        <property name="imc" type="big_decimal">
+            <column name="IMC" precision="7" />
+        </property>
+        <property name="igc" type="big_decimal">
+            <column name="IGC" precision="7" />
+        </property>
+        <property name="mcm" type="big_decimal">
+            <column name="MCM" precision="7" />
+        </property>
+        <property name="mb" type="big_decimal">
+            <column name="MB" precision="7" />
+        </property>
+        <property name="baseHeartRate" type="big_decimal">
+            <column name="BASE_HEART_RATE" precision="7" />
+        </property>
+        <property name="bellyHeightRate" type="big_decimal">
+            <column name="BELLY_HEIGHT_RATE" precision="7" />
+        </property>
+        <property name="maxHeartRate" type="big_decimal">
+            <column name="MAX_HEART_RATE" precision="7" />
+        </property>
+        <property name="heartRatea" type="string">
+            <column name="HEART_RATEA" length="45" />
+        </property>
+        <property name="heartRateb" type="string">
+            <column name="HEART_RATEB" length="45" />
+        </property>
+        <property name="heartRatec" type="string">
+            <column name="HEART_RATEC" length="45" />
+        </property>
+        <property name="heartRated" type="string">
+            <column name="HEART_RATED" length="45" />
+        </property>
+        <property name="heartRatee" type="string">
+            <column name="HEART_RATEE" length="45" />
+        </property>
+        <property name="historicDate" type="timestamp">
+            <column name="HISTORIC_DATE" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

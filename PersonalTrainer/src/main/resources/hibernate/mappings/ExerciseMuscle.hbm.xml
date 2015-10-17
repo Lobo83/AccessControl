@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2013 10:50:31 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.ExerciseMuscle" table="exercise_muscle" catalog="personalTrainer">
+        <id name="idExerciseMuscle" type="int">
+            <column name="ID_EXERCISE_MUSCLE" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="muscle" class="org.personaltrainer.persistence.bean.Muscle" fetch="select">
+            <column name="ID_MUSCLE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exercise" class="org.personaltrainer.persistence.bean.Exercise" fetch="select">
+            <column name="ID_EXERCISE" not-null="true" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="45" not-null="true" />
+        </property>
+        <property name="optimistLock" type="int">
+            <column name="OPTIMIST_LOCK" not-null="true" />
+        </property>
+        <property name="indPrincipal" type="boolean">
+            <column name="IND_PRINCIPAL" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

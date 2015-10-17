@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-sep-2013 9:45:08 by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="org.personaltrainer.persistence.bean.ExerciseRutineHistoric" table="exercise_rutine_historic" catalog="personalTrainer">
+        <id name="idExerciseRutineHistoric" type="int">
+            <column name="ID_EXERCISE_RUTINE_HISTORIC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="exerciseRutine" class="org.personaltrainer.persistence.bean.ExerciseRutine" fetch="select">
+            <column name="ID_EXERCISE_RUTINE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rutine" class="org.personaltrainer.persistence.bean.Rutine" fetch="select">
+            <column name="ID_RUTINE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exerciseMeasure" class="org.personaltrainer.persistence.bean.ExerciseMeasure" fetch="select">
+            <column name="COD_EXERCISE_MEASURE_TYPE" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="exercise" class="org.personaltrainer.persistence.bean.Exercise" fetch="select">
+            <column name="ID_EXERCISE" not-null="true" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="10" not-null="true" />
+        </property>
+        <property name="updateProgram" type="string">
+            <column name="UPDATE_PROGRAM" length="45" not-null="true" />
+        </property>
+        <property name="optimistLock" type="int">
+            <column name="OPTIMIST_LOCK" not-null="true" />
+        </property>
+        <property name="seriesNumber" type="int">
+            <column name="SERIES_NUMBER" not-null="true" />
+        </property>
+        <property name="duration" type="int">
+            <column name="DURATION" not-null="true" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="WEIGHT" precision="10" />
+        </property>
+        <property name="changeDate" type="timestamp">
+            <column name="CHANGE_DATE" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
