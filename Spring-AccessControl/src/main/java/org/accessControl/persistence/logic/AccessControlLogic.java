@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Lobo
  * 
  */
-// @Transactional Al poner esta anotación, se produce bien la DI pero luego,
-// cuando se quiere recuperar la bean en algún sitio del código, las tiene a
-// null.
+
 public class AccessControlLogic {
 
 	private static final String USER_PROFILE="ACPROFILE2";
@@ -50,10 +48,7 @@ public class AccessControlLogic {
 	 * @throws CannotAccessException
 	 * 
 	 */
-	// Hay un problema con los métodos final, no pueden ser pasados por
-	// Proxy(Obviamente ya que no son sobreescribibles) así que al poner
-	// @Transactional no se resuelve bien la transacción y hace cosas raras. Con
-	// esto mantiene bien las sessiones y todo
+	
 	@Transactional(rollbackFor = DataAccessException.class, propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = true)
 	public Boolean canAccess(final String profile, final String resource,
 			final String actionToPerform) throws CannotAccessException {
@@ -61,8 +56,7 @@ public class AccessControlLogic {
 		// result variable
 		Boolean canAccess = false;
 
-		List<AccessControlResourceType> possibleActions;
-		boolean actionFound = false;
+		
 		// First step: checking rather the action can be performed on the
 		// resource
 
